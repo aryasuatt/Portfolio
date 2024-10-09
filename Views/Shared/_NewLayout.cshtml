@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/theme/css/main")
+</head>
+<body>
+    @Html.Partial("~/Views/Shared/Partials/_Header.cshtml")
+
+    @RenderBody()
+
+    @Html.Partial("~/Views/Shared/Partials/_Footer.cshtml")
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+
+    @if (ViewBag.Active != null)
+    {
+       
+
+        <script>
+            let activePage = @ViewBag.Active;
+            let menuItems = document.getElementsByClassName("menua");
+            console.log(menuItems, typeof (menuItems))
+
+            for (let i = 0; i < menuItems.length; i++) {
+                let a = menuItems[i];
+                console.log(a.id);
+                if (a.id == "menua-"+activePage) {
+                    a.classList.add("active");
+                } else {
+                    a.classList.remove("active");
+                }
+            }
+        </script>
+    }
+</body>
+</html>
